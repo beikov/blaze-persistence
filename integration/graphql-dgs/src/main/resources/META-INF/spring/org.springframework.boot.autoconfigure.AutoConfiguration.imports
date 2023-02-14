@@ -1,0 +1,2 @@
+com.blazebit.persistence.integration.graphql.dgs.BlazePersistenceDgsAutoconfiguration
+com.blazebit.persistence.integration.graphql.dgs.BlazePersistenceSpringGraphQLConfiguration
