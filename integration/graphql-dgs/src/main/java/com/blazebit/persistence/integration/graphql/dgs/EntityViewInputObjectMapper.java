@@ -16,30 +16,36 @@
 
 package com.blazebit.persistence.integration.graphql.dgs;
 
+import com.blazebit.persistence.integration.graphql.dgs.converter.EntityViewInputIdTypeConverter;
 import com.blazebit.persistence.view.EntityViewManager;
 import com.blazebit.persistence.view.impl.metamodel.AbstractMethodAttribute;
 import com.blazebit.persistence.view.impl.metamodel.AbstractMethodPluralAttribute;
-import com.blazebit.persistence.view.metamodel.*;
+import com.blazebit.persistence.view.metamodel.ManagedViewType;
+import com.blazebit.persistence.view.metamodel.MethodAttribute;
+import com.blazebit.persistence.view.metamodel.ViewType;
 import com.netflix.graphql.dgs.internal.DefaultInputObjectMapper;
 import com.netflix.graphql.dgs.internal.InputObjectMapper;
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 import kotlin.reflect.KClass;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Christian Beikov
  * @since 1.6.9
  */
+@Component
 public class EntityViewInputObjectMapper implements InputObjectMapper
 {
 
   private static final InputObjectMapper DEFAULT = new DefaultInputObjectMapper();
   private final EntityViewManager entityViewManager;
+  private final List<EntityViewInputIdTypeConverter<?>> idTypeConverters;
 
-  EntityViewInputObjectMapper(EntityViewManager entityViewManager) {
+  EntityViewInputObjectMapper(EntityViewManager entityViewManager, List<EntityViewInputIdTypeConverter<?>> converters) {
     this.entityViewManager = entityViewManager;
+    this.idTypeConverters = converters;
   }
 
   @NotNull
@@ -134,6 +140,21 @@ public class EntityViewInputObjectMapper implements InputObjectMapper
           //noinspection unchecked
           id = mapToJavaObject((Map<String, ?>) value, idAttribute.getJavaType());
         } else {
+          // check if we have a converter that supports the conversion
+          for (EntityViewInputIdTypeConverter<?> converter: idTypeConverters){
+            if(converter.supports(idAttribute.getJavaType())) {
+              try {
+                // since the graphql type is ID we will always have a string value
+                // therefore this is a safe cast
+                return converter.convert((String) value);
+              } catch (Exception e) {
+                // if we can't cast the value even though we found a converter
+                // just quit and return the value
+                break;
+              }
+            }
+          }
+          // if we don't have a converter we return the value although the string converter
           id = value;
         }
       } else {

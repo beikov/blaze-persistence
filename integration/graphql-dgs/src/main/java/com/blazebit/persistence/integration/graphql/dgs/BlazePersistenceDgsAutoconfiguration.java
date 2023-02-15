@@ -21,7 +21,6 @@ import com.blazebit.persistence.integration.graphql.GraphQLEntityViewSupportFact
 import com.blazebit.persistence.view.EntityViewManager;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsTypeDefinitionRegistry;
-import com.netflix.graphql.dgs.internal.InputObjectMapper;
 import graphql.schema.idl.TypeDefinitionRegistry;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,8 +36,6 @@ import org.springframework.context.annotation.Configuration;
 @DgsComponent
 public class BlazePersistenceDgsAutoconfiguration
 {
-  private final EntityViewManager evm;
-
   private GraphQLEntityViewSupport graphQLEntityViewSupport;
   private TypeDefinitionRegistry typeRegistry;
 
@@ -46,14 +43,8 @@ public class BlazePersistenceDgsAutoconfiguration
     final GraphQLEntityViewSupportFactory graphQLEntityViewSupportFactory
   )
   {
-    this.evm = evm;
     this.typeRegistry = new TypeDefinitionRegistry();
     this.graphQLEntityViewSupport = graphQLEntityViewSupportFactory.create(typeRegistry, evm);
-  }
-
-  @Bean
-  public InputObjectMapper getInputObjectMapper() {
-    return new EntityViewInputObjectMapper(evm);
   }
 
   @Bean

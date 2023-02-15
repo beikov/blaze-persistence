@@ -1,2 +1,6 @@
 com.blazebit.persistence.integration.graphql.dgs.BlazePersistenceDgsAutoconfiguration
 com.blazebit.persistence.integration.graphql.dgs.BlazePersistenceSpringGraphQLConfiguration
+com.blazebit.persistence.integration.graphql.dgs.EntityViewInputObjectMapper
+com.blazebit.persistence.integration.graphql.dgs.converter.IntegerInputIdConverter
+com.blazebit.persistence.integration.graphql.dgs.converter.LongInputIdConverter
+com.blazebit.persistence.integration.graphql.dgs.converter.StringInputIdConverter
