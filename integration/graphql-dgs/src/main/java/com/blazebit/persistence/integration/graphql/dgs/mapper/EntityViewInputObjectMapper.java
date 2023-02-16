@@ -144,17 +144,19 @@ public class EntityViewInputObjectMapper implements InputObjectMapper
           for (EntityViewInputIdTypeConverter<?> converter: idTypeConverters){
             if(converter.supports(idAttribute.getJavaType())) {
               try {
-                // since the graphql type is ID we will always have a string value
+                // since the graphql type is ID, we will always have a string value
                 // therefore this is a safe cast
                 return converter.convert((String) value);
               } catch (Exception e) {
-                // if we can't cast the value even though we found a converter
-                // just quit and return the value
+                // if something went wrong even though we found a converter we just use
+                // the raw value
                 break;
               }
             }
           }
           // if we don't have a converter we return the value although the string converter
+          // should have caught ID, basically this case should not happen but is here as a
+          // catch all
           id = value;
         }
       } else {
