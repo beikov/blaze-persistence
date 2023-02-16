@@ -18,23 +18,21 @@ package com.blazebit.persistence.integration.graphql.dgs;
 
 import com.blazebit.persistence.integration.graphql.GraphQLEntityViewSupportFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
- * This exposes a factory that can generate GraphQL type definitions from EntityViews.
+ * This is the companion configuration for {@link BlazePersistenceDgsAutoconfiguration} and exposes the
+ * {@link GraphQLEntityViewSupportFactory} as a supplyable bean so it can be customized
  *
  * @author Christian Beikov
  * @since 1.6.9
  */
 @Configuration
-@ComponentScan({
-  "com.blazebit.persistence.integration.graphql.dgs.converter",
-  "com.blazebit.persistence.integration.graphql.dgs.mapper"
-})
-public class BlazePersistenceSpringGraphQLAutoConfiguration
+public class GraphQLEntityViewSupportFactoryAutoConfiguration
 {
   @Bean
-  @ConditionalOnMissingBean(GraphQLEntityViewSupportFactory.class)
+  @ConditionalOnMissingBean
   public GraphQLEntityViewSupportFactory graphQLEntityViewSupportFactory() {
     GraphQLEntityViewSupportFactory graphQLEntityViewSupportFactory = new GraphQLEntityViewSupportFactory(true, true);
     graphQLEntityViewSupportFactory.setImplementRelayNode(false);
@@ -42,4 +40,5 @@ public class BlazePersistenceSpringGraphQLAutoConfiguration
     graphQLEntityViewSupportFactory.setRegisterScalarTypeDefinitions(true);
     return graphQLEntityViewSupportFactory;
   }
+
 }

@@ -18,12 +18,14 @@ package com.blazebit.persistence.integration.graphql.dgs;
 
 import com.blazebit.persistence.integration.graphql.GraphQLEntityViewSupport;
 import com.blazebit.persistence.integration.graphql.GraphQLEntityViewSupportFactory;
+import com.blazebit.persistence.integration.graphql.dgs.converter.*;
+import com.blazebit.persistence.integration.graphql.dgs.mapper.EntityViewInputObjectMapper;
 import com.blazebit.persistence.view.EntityViewManager;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsTypeDefinitionRegistry;
 import graphql.schema.idl.TypeDefinitionRegistry;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
+import org.springframework.context.annotation.*;
 
 /**
  * The following is a bit against the <a href="https://netflix.github.io/dgs/getting-started/#creating-a-schema">schema first DGS principle</a>
@@ -34,15 +36,26 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @DgsComponent
+@Import({
+  EntityViewInputObjectMapper.class,
+  IntegerInputIdConverter.class,
+  LongInputIdConverter.class,
+  StringInputIdConverter.class
+})
+@ImportAutoConfiguration(GraphQLEntityViewSupportFactoryAutoConfiguration.class)
 public class BlazePersistenceDgsAutoconfiguration
 {
   private GraphQLEntityViewSupport graphQLEntityViewSupport;
   private TypeDefinitionRegistry typeRegistry;
 
-  public BlazePersistenceDgsAutoconfiguration(final EntityViewManager evm,
-    final GraphQLEntityViewSupportFactory graphQLEntityViewSupportFactory
-  )
-  {
+  /**
+   * The constructor creates the {@link TypeDefinitionRegistry} that is later exposed via @DgsTypeDefinitionRegistry.
+   * It is done here since we have a ordering constraint, graphQLEntityViewSupportFactory need to fill it in its
+   * create method while creating the {@link GraphQLEntityViewSupport} that is later exposed as bean.
+   */
+  public BlazePersistenceDgsAutoconfiguration(
+    EntityViewManager evm, GraphQLEntityViewSupportFactory graphQLEntityViewSupportFactory
+  ) {
     this.typeRegistry = new TypeDefinitionRegistry();
     this.graphQLEntityViewSupport = graphQLEntityViewSupportFactory.create(typeRegistry, evm);
   }
@@ -57,5 +70,6 @@ public class BlazePersistenceDgsAutoconfiguration
   public TypeDefinitionRegistry registry() {
     return typeRegistry;
   }
+
 
 }
