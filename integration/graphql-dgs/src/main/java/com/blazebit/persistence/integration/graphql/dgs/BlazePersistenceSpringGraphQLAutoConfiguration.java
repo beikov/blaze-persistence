@@ -18,8 +18,7 @@ package com.blazebit.persistence.integration.graphql.dgs;
 
 import com.blazebit.persistence.integration.graphql.GraphQLEntityViewSupportFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 
 /**
  * This exposes a factory that can generate GraphQL type definitions from EntityViews.
@@ -28,7 +27,11 @@ import org.springframework.context.annotation.Configuration;
  * @since 1.6.9
  */
 @Configuration
-public class BlazePersistenceSpringGraphQLConfiguration
+@ComponentScan({
+  "com.blazebit.persistence.integration.graphql.dgs.converter",
+  "com.blazebit.persistence.integration.graphql.dgs.mapper"
+})
+public class BlazePersistenceSpringGraphQLAutoConfiguration
 {
   @Bean
   @ConditionalOnMissingBean(GraphQLEntityViewSupportFactory.class)

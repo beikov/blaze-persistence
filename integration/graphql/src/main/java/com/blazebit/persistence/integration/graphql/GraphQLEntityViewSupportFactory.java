@@ -1108,7 +1108,6 @@ public class GraphQLEntityViewSupportFactory {
      * @return The type
      */
     protected Type getIdType(TypeDefinitionRegistry typeRegistry, SingularAttribute<?, ?> singularAttribute) {
-//        return new NonNullType(getScalarType(typeRegistry, singularAttribute.getJavaType()));
         return new NonNullType(new TypeName("ID"));
     }
 
@@ -1121,7 +1120,6 @@ public class GraphQLEntityViewSupportFactory {
      */
     protected Type getInputIdType(TypeDefinitionRegistry typeRegistry, SingularAttribute<?, ?> singularAttribute) {
         // Ideally, we would make this only nullable if the value is generated, but that's hard to determine
-//        return getScalarType(typeRegistry, singularAttribute.getJavaType());
         return new TypeName("ID");
     }
 
@@ -1132,7 +1130,6 @@ public class GraphQLEntityViewSupportFactory {
      * @return The type
      */
     protected GraphQLOutputType getIdType(GraphQLSchema.Builder schemaBuilder, SingularAttribute<?, ?> singularAttribute, Map<Class<?>, String> registeredTypeNames) {
-//        return getScalarType(schemaBuilder, singularAttribute.getJavaType(), registeredTypeNames);
         if (scalarTypeMap != null) {
             return new GraphQLNonNull(scalarTypeMap.get("ID"));
         }
@@ -1146,7 +1143,6 @@ public class GraphQLEntityViewSupportFactory {
      * @return The type
      */
     protected GraphQLInputType getInputIdType(GraphQLSchema.Builder schemaBuilder, SingularAttribute<?, ?> singularAttribute, Map<Class<?>, String> registeredTypeNames) {
-//        return (GraphQLInputType) getScalarType(schemaBuilder, singularAttribute.getJavaType(), registeredTypeNames);
         // Ideally, we would make this only nullable if the value is generated, but that's hard to determine
         if (scalarTypeMap != null) {
             return scalarTypeMap.get("ID");

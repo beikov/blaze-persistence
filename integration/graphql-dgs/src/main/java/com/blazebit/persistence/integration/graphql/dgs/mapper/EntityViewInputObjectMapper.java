@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.blazebit.persistence.integration.graphql.dgs;
+package com.blazebit.persistence.integration.graphql.dgs.mapper;
 
 import com.blazebit.persistence.integration.graphql.dgs.converter.EntityViewInputIdTypeConverter;
 import com.blazebit.persistence.view.EntityViewManager;
