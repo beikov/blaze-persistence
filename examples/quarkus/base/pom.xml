@@ -50,6 +50,13 @@
             <artifactId>blaze-persistence-integration-jaxrs-jackson</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- IntelliJ apparently needs the annotation processor here -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>${version.hibernate-orm}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <profiles>

@@ -46,6 +46,7 @@ public abstract class AbstractQuarkusExampleTest {
         given().when().delete("/documents");
         given().when().delete("/document-types");
         given().when().delete("/persons");
+        given().when().delete("/versioned");
     }
 
     @Test
@@ -139,5 +140,27 @@ public abstract class AbstractQuarkusExampleTest {
                 .then()
                 .statusCode(200)
                 .body("name", is("person1-new"));
+    }
+
+    @Test
+    public void updateVersioned() {
+        String locationHeader = given()
+            .body("{\"name\": \"Doc1\"}")
+            .contentType(ContentType.JSON)
+            .when().post("/versioned")
+            .then()
+            .statusCode(201)
+            .header("Location", matchesPattern("http://localhost:" + apiBaseUri.getPort() + "/versioned/.*"))
+            .extract()
+            .header("Location");
+        String id = locationHeader.substring(locationHeader.lastIndexOf('/') + 1);
+
+        given()
+            .body("{\"name\": \"NewDoc\"}")
+            .contentType(ContentType.JSON)
+            .when().put("/versioned/" + id)
+            .then()
+            .statusCode(200)
+            .body("name", is("NewDoc"));
     }
 }

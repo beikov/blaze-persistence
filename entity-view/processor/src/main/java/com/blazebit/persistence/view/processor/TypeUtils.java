@@ -239,17 +239,21 @@ public final class TypeUtils {
     }
 
     public static String getType(Element element, Context context) {
-        DeclaredType entityDeclaredType = (DeclaredType) element.asType();
+        DeclaredType entityDeclaredType;
+        if (element instanceof ExecutableElement) {
+            entityDeclaredType = (DeclaredType) ((ExecutableElement) element).getReturnType();
+        } else {
+            entityDeclaredType = (DeclaredType) element.asType();
+        }
         TypeElement returnedElement = (TypeElement) context.getTypeUtils().asElement(entityDeclaredType);
         return returnedElement.getQualifiedName().toString();
     }
 
-    public static String getRealType(Element element, Context context) {
-        DeclaredType entityDeclaredType = (DeclaredType) element.asType();
+    public static String getRealType(DeclaredType entityDeclaredType, Element element, Context context) {
         if (element instanceof ExecutableElement) {
             return toTypeString(entityDeclaredType, ((ExecutableElement) element).getReturnType(), context);
         } else {
-            return toTypeString(entityDeclaredType,element.asType(), context);
+            return toTypeString(entityDeclaredType, element.asType(), context);
         }
     }
 
