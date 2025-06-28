@@ -12,6 +12,7 @@ Changes that happened in releases
 
 * Fix issue in `LazyKeysetLink` preventing use of the `afterKeyset()`/`beforeKeyset()` methods
 * Use MySQL date/time functions also on MariaDB
+* Also add `ORDER BY` clause items for `@Limit(order)` to outer query builder
 
 ### Backwards-incompatible changes
 

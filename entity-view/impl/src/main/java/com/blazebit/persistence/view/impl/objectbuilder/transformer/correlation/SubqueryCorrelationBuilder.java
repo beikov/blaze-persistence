@@ -83,6 +83,9 @@ public class SubqueryCorrelationBuilder implements CorrelationBuilder {
         } else if (correlationBuilder instanceof FullSelectCTECriteriaBuilder<?>) {
             ((FullSelectCTECriteriaBuilder<?>) correlationBuilder).end();
         }
+        if (limiter != null) {
+            limiter.applyOrder(criteriaBuilder, correlationAlias, correlationExternalAlias);
+        }
         return correlationRoot;
     }
 

@@ -3,7 +3,7 @@
  * Copyright Blazebit
  */
 
-package com.blazebit.persistence.view.testsuite.limit.model;
+package com.blazebit.persistence.view.testsuite.limit.topn.model;
 
 import com.blazebit.persistence.testsuite.entity.Document;
 import com.blazebit.persistence.view.EntityView;
@@ -12,7 +12,7 @@ import com.blazebit.persistence.view.testsuite.basic.model.IdHolderView;
 /**
  *
  * @author Christian Beikov
- * @since 1.5.0
+ * @since 1.6.16
  */
 @EntityView(Document.class)
 public interface DocumentLimitView extends IdHolderView<Long> {

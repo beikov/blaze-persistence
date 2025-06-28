@@ -105,11 +105,12 @@ public final class EntityViewSettingHelper {
         entityViewRoot = root.getPath();
         Q queryBuilder = getQueryBuilder(setting, criteriaBuilder, entityViewRoot, managedView, setting.getProperties());
         EntityViewConfiguration configuration = new EntityViewConfiguration(queryBuilder, ef, new MutableViewJpqlMacro(), new MutableEmbeddingViewJpqlMacro(), optionalParameters, setting.getProperties(), requestedFetches, managedView);
-        queryBuilder.selectNew(evm.createObjectBuilder(managedView, mappingConstructor, root.getJavaType(), entityViewRoot, null, criteriaBuilder, configuration, 0, 0, false));
         Set<String> fetches = configuration.getFetches();
+        // Must apply user specified sorters first, because apply the entity view via selectNew might add further sorters
+        applyAttributeSorters(setting, queryBuilder, entityViewRoot, fetches, managedView);
+        queryBuilder.selectNew(evm.createObjectBuilder(managedView, mappingConstructor, root.getJavaType(), entityViewRoot, null, criteriaBuilder, configuration, 0, 0, false));
         applyAttributeFilters(setting, evm, queryBuilder, entityViewRoot, fetches, managedView);
         applyViewFilters(setting, evm, queryBuilder, managedView);
-        applyAttributeSorters(setting, queryBuilder, entityViewRoot, fetches, managedView);
         applyOptionalParameters(optionalParameters, queryBuilder);
         return queryBuilder;
     }

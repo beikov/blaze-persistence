@@ -74,4 +74,10 @@ public final class Limiter {
             builder.setFirstResult(offsetValue);
         }
     }
+
+    public void applyOrder(OrderByBuilder<?> orderByBuilder, String oldAlias, String newAlias) {
+        for (OrderByItem orderByItem : orderByItems) {
+            orderByBuilder.orderBy(orderByItem.getExpression().replace(oldAlias, newAlias), orderByItem.isAscending(), orderByItem.isNullsFirst());
+        }
+    }
 }

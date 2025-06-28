@@ -3,16 +3,16 @@
  * Copyright Blazebit
  */
 
-package com.blazebit.persistence.view.testsuite.limit.model;
-
-import com.blazebit.persistence.view.testsuite.basic.model.IdHolderView;
+package com.blazebit.persistence.view.testsuite.limit.topn.model;
 
 import java.util.List;
+
+import com.blazebit.persistence.view.testsuite.basic.model.IdHolderView;
 
 /**
  *
  * @author Christian Beikov
- * @since 1.5.0
+ * @since 1.6.16
  */
 public interface PersonLimitView extends IdHolderView<Long> {
 

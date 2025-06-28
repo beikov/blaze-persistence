@@ -3,11 +3,16 @@
  * Copyright Blazebit
  */
 
-package com.blazebit.persistence.view.testsuite.limit;
+package com.blazebit.persistence.view.testsuite.limit.topn;
+
+import java.util.List;
+import javax.persistence.EntityManager;
+
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import com.blazebit.persistence.testsuite.base.jpa.category.NoDatanucleus;
 import com.blazebit.persistence.testsuite.base.jpa.category.NoEclipselink;
-import com.blazebit.persistence.testsuite.base.jpa.category.NoH2;
 import com.blazebit.persistence.testsuite.base.jpa.category.NoHibernate42;
 import com.blazebit.persistence.testsuite.base.jpa.category.NoHibernate43;
 import com.blazebit.persistence.testsuite.base.jpa.category.NoHibernate50;
@@ -21,30 +26,25 @@ import com.blazebit.persistence.testsuite.tx.TxVoidWork;
 import com.blazebit.persistence.view.ConfigurationProperties;
 import com.blazebit.persistence.view.EntityViewManager;
 import com.blazebit.persistence.view.EntityViewSetting;
-import com.blazebit.persistence.view.EntityViews;
-import com.blazebit.persistence.view.spi.EntityViewConfiguration;
+import com.blazebit.persistence.view.Sorters;
 import com.blazebit.persistence.view.testsuite.AbstractEntityViewTest;
-import com.blazebit.persistence.view.testsuite.limit.model.DocumentLimitView;
-import com.blazebit.persistence.view.testsuite.limit.model.PersonLimitJoinExpressionView;
-import com.blazebit.persistence.view.testsuite.limit.model.PersonLimitJoinView;
-import com.blazebit.persistence.view.testsuite.limit.model.PersonLimitMultisetView;
-import com.blazebit.persistence.view.testsuite.limit.model.PersonLimitSelectView;
-import com.blazebit.persistence.view.testsuite.limit.model.PersonLimitSubselectView;
-import com.blazebit.persistence.view.testsuite.limit.model.PersonLimitView;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-
-import javax.persistence.EntityManager;
-import java.util.List;
+import com.blazebit.persistence.view.testsuite.limit.topn.model.DocumentLimitView;
+import com.blazebit.persistence.view.testsuite.limit.topn.model.PersonLimitJoinExpressionView;
+import com.blazebit.persistence.view.testsuite.limit.topn.model.PersonLimitJoinView;
+import com.blazebit.persistence.view.testsuite.limit.topn.model.PersonLimitMultisetView;
+import com.blazebit.persistence.view.testsuite.limit.topn.model.PersonLimitSelectView;
+import com.blazebit.persistence.view.testsuite.limit.topn.model.PersonLimitSubselectView;
+import com.blazebit.persistence.view.testsuite.limit.topn.model.PersonLimitView;
 
 import static org.junit.Assert.assertEquals;
 
 /**
+ * For #2037
  *
  * @author Christian Beikov
- * @since 1.5.0
+ * @since 1.6.16
  */
-public class LimitTest extends AbstractEntityViewTest {
+public class LimitTop2Test extends AbstractEntityViewTest {
 
     @Override
     public void setUpOnce() {
@@ -137,9 +137,10 @@ public class LimitTest extends AbstractEntityViewTest {
             batchSize = 1;
         }
         String prop = ConfigurationProperties.DEFAULT_BATCH_SIZE + ".ownedDocuments";
-        List<? extends PersonLimitView> list = evm.applySetting(EntityViewSetting.create(clazz).withProperty(prop, batchSize), cbf.create(em, Person.class, "p")).getResultList();
+        List<? extends PersonLimitView> list = evm.applySetting(EntityViewSetting.create(clazz).withProperty(prop, batchSize).withAttributeSorter("name", Sorters.ascending()), cbf.create(em, Person.class, "p")).getResultList();
         assertEquals(1, list.size());
-        assertEquals(1, list.get(0).getOwnedDocuments().size());
+        assertEquals(2, list.get(0).getOwnedDocuments().size());
         assertEquals("doc2", list.get(0).getOwnedDocuments().get(0).getName());
+        assertEquals("doc1", list.get(0).getOwnedDocuments().get(1).getName());
     }
 }

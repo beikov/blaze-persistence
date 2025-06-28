@@ -12,6 +12,7 @@ import com.blazebit.persistence.FromProvider;
 import com.blazebit.persistence.FullSelectCTECriteriaBuilder;
 import com.blazebit.persistence.JoinOnBuilder;
 import com.blazebit.persistence.JoinType;
+import com.blazebit.persistence.OrderByBuilder;
 import com.blazebit.persistence.ParameterHolder;
 import com.blazebit.persistence.SubqueryBuilder;
 import com.blazebit.persistence.impl.builder.predicate.AbstractQuantifiablePredicateBuilder;
@@ -75,6 +76,9 @@ public class JoinCorrelationBuilder implements CorrelationBuilder {
             ((SubqueryBuilder<?>) correlationBuilder).end();
         } else  if (correlationBuilder instanceof FullSelectCTECriteriaBuilder<?>) {
             ((FullSelectCTECriteriaBuilder<?>) correlationBuilder).end();
+        }
+        if (limiter != null) {
+            limiter.applyOrder((OrderByBuilder<?>) criteriaBuilder, correlationAlias, correlationExternalAlias);
         }
     }
 

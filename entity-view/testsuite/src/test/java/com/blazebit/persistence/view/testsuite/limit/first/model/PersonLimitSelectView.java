@@ -3,7 +3,7 @@
  * Copyright Blazebit
  */
 
-package com.blazebit.persistence.view.testsuite.limit.model;
+package com.blazebit.persistence.view.testsuite.limit.first.model;
 
 import com.blazebit.persistence.testsuite.entity.Person;
 import com.blazebit.persistence.view.EntityView;
@@ -19,10 +19,10 @@ import java.util.List;
  * @since 1.5.0
  */
 @EntityView(Person.class)
-public interface PersonLimitJoinExpressionView extends PersonLimitView {
+public interface PersonLimitSelectView extends PersonLimitView {
 
     @Limit(limit = "1", order = {"age", "id"})
-    @Mapping("ownedDocuments[owner.name = VIEW(name)]")
+    @Mapping(fetch = FetchStrategy.SELECT)
     public List<DocumentLimitView> getOwnedDocuments();
 
 }
