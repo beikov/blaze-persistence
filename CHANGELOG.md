@@ -7,6 +7,7 @@ Changes that happened in releases
 ### New features
 
 * Ensure support for Hibernate ORM 7.3 and 7.4
+* Ensure support for Spring Boot/Data 4.1
 * Improve `STRING_JSON_AGG` and `TO_JSON` implementation for Oracle
 
 ### Bug fixes
