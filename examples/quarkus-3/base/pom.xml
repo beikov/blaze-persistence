@@ -68,9 +68,6 @@
         </profile>
         <profile>
             <id>hibernate-7.1</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <hibernate.integration-version>7.1</hibernate.integration-version>
             </properties>
@@ -83,6 +80,15 @@
         </profile>
         <profile>
             <id>hibernate-7.3</id>
+            <properties>
+                <hibernate.integration-version>7.2</hibernate.integration-version>
+            </properties>
+        </profile>
+        <profile>
+            <id>hibernate-7.4</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <hibernate.integration-version>7.2</hibernate.integration-version>
             </properties>

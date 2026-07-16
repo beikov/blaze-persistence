@@ -32,6 +32,10 @@ elif [ "$COMPONENT" == 'hibernate-7.3' ]; then
   export JPAPROVIDER="hibernate-7.3"
   export SPRING_DATA="spring-data-4.0.x"
   export PROPERTIES="-s $DIR/latest-settings.xml -Dversion.hibernate-7.3=[7.3,7.3.Alpha)"
+elif [ "$COMPONENT" == 'hibernate-7.4' ]; then
+  export JPAPROVIDER="hibernate-7.4"
+  export SPRING_DATA="spring-data-4.0.x"
+  export PROPERTIES="-s $DIR/latest-settings.xml -Dversion.hibernate-7.4=[7.4,7.4.Alpha)"
 else
   export JPAPROVIDER="hibernate-6.2"
   export SPRING_DATA="spring-data-3.1.x"
