@@ -140,6 +140,9 @@
         <version.spring-data-4.0>4.0.6</version.spring-data-4.0>
         <version.spring-data-4.0-spring>7.0.8</version.spring-data-4.0-spring>
         <version.spring-data-4.0-spring-boot>4.0.7</version.spring-data-4.0-spring-boot>
+        <version.spring-data-4.1>4.1.0</version.spring-data-4.1>
+        <version.spring-data-4.1-spring>7.0.8</version.spring-data-4.1-spring>
+        <version.spring-data-4.1-spring-boot>4.1.0</version.spring-data-4.1-spring-boot>
         <version.openejb>4.7.5</version.openejb>
         <version.openejb.javaee-api>6.0-6</version.openejb.javaee-api>
 
