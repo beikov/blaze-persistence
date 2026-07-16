@@ -93,9 +93,6 @@
         </profile>
         <profile>
             <id>hibernate-7.1</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <version.jakarta-jpa>${version.jakarta-jpa-3.2-api}</version.jakarta-jpa>
                 <version.quarkus>${version.quarkus-3.26}</version.quarkus>
@@ -115,6 +112,17 @@
             <properties>
                 <version.jakarta-jpa>${version.jakarta-jpa-3.2-api}</version.jakarta-jpa>
                 <version.quarkus>${version.quarkus-3.32}</version.quarkus>
+                <version.jandex>3.4.0</version.jandex>
+            </properties>
+        </profile>
+        <profile>
+            <id>hibernate-7.4</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <version.jakarta-jpa>${version.jakarta-jpa-3.2-api}</version.jakarta-jpa>
+                <version.quarkus>${version.quarkus-3.37}</version.quarkus>
                 <version.jandex>3.4.0</version.jandex>
             </properties>
         </profile>

@@ -71,6 +71,7 @@
         <version.hibernate-7.1>7.1.20.Final</version.hibernate-7.1>
         <version.hibernate-7.2>7.2.7.Final</version.hibernate-7.2>
         <version.hibernate-7.3>7.3.12.Final</version.hibernate-7.3>
+        <version.hibernate-7.4>7.4.5.Final</version.hibernate-7.4>
 
         <version.datanucleus.base-4>4.1.17</version.datanucleus.base-4>
         <version.datanucleus.rdbms-4>4.1.19</version.datanucleus.rdbms-4>
@@ -154,6 +155,7 @@
         <version.quarkus-3.26>3.26.1</version.quarkus-3.26>
         <version.quarkus-3.29>3.29.3</version.quarkus-3.29>
         <version.quarkus-3.32>3.32.4</version.quarkus-3.32>
+        <version.quarkus-3.37>3.37.3</version.quarkus-3.37>
         <version.jandex>2.4.2.Final</version.jandex>
         <version.classgraph>4.8.89</version.classgraph>
 

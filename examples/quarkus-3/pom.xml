@@ -21,8 +21,8 @@
         <main.java.version>17</main.java.version>
         <version.jandex>3.1.6</version.jandex>
         <version.jpa>${version.jakarta-jpa-3.2-api}</version.jpa>
-        <version.hibernate-orm>${version.hibernate-7.2}</version.hibernate-orm>
-        <version.quarkus>${version.quarkus-3.32}</version.quarkus>
+        <version.hibernate-orm>${version.hibernate-7.4}</version.hibernate-orm>
+        <version.quarkus>${version.quarkus-3.37}</version.quarkus>
     </properties>
 
     <dependencyManagement>
@@ -78,9 +78,6 @@
         </profile>
         <profile>
             <id>hibernate-7.2</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <version.jpa>${version.jakarta-jpa-3.2-api}</version.jpa>
                 <version.hibernate-orm>${version.hibernate-7.2}</version.hibernate-orm>
@@ -93,6 +90,17 @@
                 <version.jpa>${version.jakarta-jpa-3.2-api}</version.jpa>
                 <version.hibernate-orm>${version.hibernate-7.2}</version.hibernate-orm>
                 <version.quarkus>${version.quarkus-3.32}</version.quarkus>
+            </properties>
+        </profile>
+        <profile>
+            <id>hibernate-7.4</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <version.jpa>${version.jakarta-jpa-3.2-api}</version.jpa>
+                <version.hibernate-orm>${version.hibernate-7.2}</version.hibernate-orm>
+                <version.quarkus>${version.quarkus-3.37}</version.quarkus>
             </properties>
         </profile>
     </profiles>
