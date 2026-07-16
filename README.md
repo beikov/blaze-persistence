@@ -195,7 +195,7 @@ See the following table for an overview of supported versions.
 
 Module                           | Minimum version                     | Supported versions
 ---------------------------------|-------------------------------------|--------------------
-Hibernate integration            | Hibernate 4.2                       | 4.2, 4.3, 5.0+, 6.2+, 7.1 (not all features are available in older versions)
+Hibernate integration            | Hibernate 4.2                       | 4.2, 4.3, 5.0+, 6.2+, 7.1+ (not all features are available in older versions)
 EclipseLink integration          | EclipseLink 2.6                     | 2.6 (Probably 2.4 and 2.5 work as well, but only tested against 2.6)
 DataNucleus integration          | DataNucleus 4.1                     | 4.1, 5.0
 OpenJPA integration              | N/A                                 | (Currently not usable. OpenJPA doesn't seem to be actively developed anymore and no users asked for support yet)
