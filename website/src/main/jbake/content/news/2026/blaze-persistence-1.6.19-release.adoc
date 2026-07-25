@@ -1,0 +1,29 @@
+= Blaze-Persistence 1.6.19 Release
+Christian Beikov
+2026-07-25 0
+:description: Blaze-Persistence version 1.6.19 was just released
+:page: news
+:icon: christian_head.png
+:jbake-tags: announcement,release
+:jbake-type: post
+:jbake-status: published
+:linkattrs:
+
+We are happy to announce the nineteenth bug fix release of the 1.6 series.
+
+=== Hibernate ORM 7.3 and 7.4 support
+
+It took some time, but the `blaze-persistence-integration-hibernate-7.2` artifact was finally updated in a way to support Hibernate ORM 7.3 and 7.4.
+
+Since Wildfly 40/41 and Quarkus 3.36 use Hibernate ORM 7.3/7.4, this release enables the update to the latest Wildfly versions.
+
+=== Spring Boot/Data 4.1
+
+Testing for Spring Boot/Data 4.1 has been +++<!-- PREVIEW-SUFFIX --><!-- </p></div> --><!-- PREVIEW-END -->+++
+added to ensure the integration works correctly with the latest versions.
+
+=== Various bug fixes
+
+Take a look into the https://github.com/Blazebit/blaze-persistence/blob/main/CHANGELOG.md#1619[changelog, window="_blank"] for a full list of changes and improvements.
+
+Enjoy the release and stay tuned for the next one!
