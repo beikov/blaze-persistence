@@ -1,0 +1,26 @@
+= Blaze-Persistence 1.6.20 Release
+Christian Beikov
+2026-07-27 0
+:description: Blaze-Persistence version 1.6.20 was just released
+:page: news
+:icon: christian_head.png
+:jbake-tags: announcement,release
+:jbake-type: post
+:jbake-status: published
+:linkattrs:
+
+We are happy to announce the twentieth bug fix release of the 1.6 series.
+
+=== Wildfly deployment issues
+
+Unfortunately, the `blaze-persistence-integration-hibernate-7.2` artifact wrongly contained a reference to the hibernate-commons-annotations
+JAR in the `Dependencies` section of the MANIFEST.MF file, which prevented +++<!-- PREVIEW-SUFFIX --><!-- </p></div> --><!-- PREVIEW-END -->+++
+Jakarta EE applications on Wildfly to deploy correctly.
+
+This release simply removes this section from the MANIFEST.MF.
+
+=== Various bug fixes
+
+Take a look into the https://github.com/Blazebit/blaze-persistence/blob/main/CHANGELOG.md#1620[changelog, window="_blank"] for a full list of changes and improvements.
+
+Enjoy the release and stay tuned for the next one!

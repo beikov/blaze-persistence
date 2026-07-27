@@ -2,7 +2,7 @@
 
 Changes that happened in releases
 
-## 1.6.20-SNAPSHOT
+## 1.6.21-SNAPSHOT
 
 ### New features
 
@@ -11,6 +11,22 @@ None yet
 ### Bug fixes
 
 None yet
+
+### Backwards-incompatible changes
+
+None yet
+
+## 1.6.20
+
+27/07/2026 - [Release tag](https://github.com/Blazebit/blaze-persistence/releases/tag/1.6.20) [Resolved issues](https://github.com/Blazebit/blaze-persistence/issues?q=is%3Aissue+milestone%3A1.6.20+is%3Aclosed+sort%3Aupdated-desc)
+
+### New features
+
+None yet
+
+### Bug fixes
+
+* Fix problem with MANIFEST.MF file preventing deployment on Wildfly 39+
 
 ### Backwards-incompatible changes
 
